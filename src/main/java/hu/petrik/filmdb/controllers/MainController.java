@@ -1,26 +1,13 @@
 package hu.petrik.filmdb.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import hu.petrik.filmdb.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainController extends Controller {
 
@@ -34,7 +21,6 @@ public class MainController extends Controller {
     private TableColumn<Film, Integer> colHossz;
     @FXML
     private TableColumn<Film, Integer> colErtekeles;
-    private FilmDb db;
 
     public void initialize(){
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
@@ -76,10 +62,10 @@ public class MainController extends Controller {
             return;
         }
         try {
-            db.filmTorlese(torlendoFilm.getId());
-            alert("Sikeres törlés");
+            boolean sikeres = FilmApi.filmTorlese(torlendoFilm.getId());
+            alert(sikeres ? "Sikeres törlés": "Sikertele törlés");
             filmListaFeltolt();
-        } catch (SQLException e) {
+        } catch (IOException e) {
             hibaKiir(e);
         }
     }
@@ -98,15 +84,8 @@ public class MainController extends Controller {
 
     private void filmListaFeltolt(){
         try {
-            Response response = RequestHandler.get("http://localhost/_oktatas/14s/film_db_rest/api/film");
-            String json = response.getContent();
-            if (response.getResponseCode() >= 400){
-                System.out.println(json);
-                return;
-            }
-            Gson jsonConvert = new Gson();
-            Type type = new TypeToken<List<Film>>(){}.getType();
-            List<Film> filmList = jsonConvert.fromJson(json,type);
+
+            List<Film> filmList = FilmApi.getFilmek();
             filmTable.getItems().clear();
             for(Film film: filmList){
                 filmTable.getItems().add(film);

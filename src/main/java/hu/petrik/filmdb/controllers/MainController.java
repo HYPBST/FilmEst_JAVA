@@ -5,40 +5,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import java.util.List;
 
 public class MainController extends Controller {
-
+    @FXML
+    private TextArea txtAdatok;
     @FXML
     private TableView<Film> filmTable;
     @FXML
-    private TableColumn<Film, String> colId;
-    @FXML
     private TableColumn<Film, String> colCim;
     @FXML
-    private TableColumn<Film, String> colLeiras;
-    @FXML
-    private TableColumn<Film, Integer> colMegjelenesiEv;
-    @FXML
-    private TableColumn<Film, Integer> colRendezoNev;
-    @FXML
-    private TableColumn<Film, Integer> colErtekeles;
-    @FXML
-    private TableColumn<Film, String> colKategoria;
-    @FXML
-    public TableColumn<Film,String> colSzineszek;
+    private TableColumn<Film, String> colId;
+
 
     public void initialize(){
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
-        colLeiras.setCellValueFactory(new PropertyValueFactory<>("leiras"));
-        colMegjelenesiEv.setCellValueFactory(new PropertyValueFactory<>("megjelenesiEv"));
-        colErtekeles.setCellValueFactory(new PropertyValueFactory<>("ertekeles"));
-        colRendezoNev.setCellValueFactory(new PropertyValueFactory<>("rendezoNev"));
-        colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoriak"));
-        colSzineszek.setCellValueFactory(new PropertyValueFactory<>("szineszek"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         filmListaFeltolt();
     }
 
@@ -102,6 +90,20 @@ public class MainController extends Controller {
             }
         } catch (IOException e) {
             hibaKiir(e);
+        }
+    }
+
+    public void onItemSelect(MouseEvent mouseEvent) {
+        if(filmTable.getSelectionModel().getSelectedIndex()!=-1) {
+            Film kivalasztott = filmTable.getSelectionModel().getSelectedItem();
+            StringBuilder  sb=new StringBuilder();
+            sb.append("Megjelenési év: ").append(kivalasztott.getMegjelenesiEv()).append("\n");
+            sb.append("Rendező: ").append(kivalasztott.getRendezoNev()).append("\n");
+            sb.append("Leírás: ").append(kivalasztott.getLeiras()).append("\n");
+            sb.append("Kategóriák: ").append(kivalasztott.getKategoriak()).append("\n");
+            sb.append("Színészek: ").append(kivalasztott.getSzineszek());
+            sb.append("Értékelés: ").append(kivalasztott.getErtekeles()).append("\n");
+            txtAdatok.setText(sb.toString());
         }
     }
 }

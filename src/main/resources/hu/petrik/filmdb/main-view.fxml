@@ -8,19 +8,25 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+
+   <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
       <children>
          <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
          <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
          <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
       </children>
-   </HBox>
+   </HBox>-->
+
    <TableView fx:id="filmTable" minHeight="200.0" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
      <columns>
-       <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="200.0" text="Cím" />
-       <TableColumn fx:id="colKategoria" minWidth="50.0" prefWidth="150.0" text="Kategória" />
-         <TableColumn fx:id="colHossz" minWidth="50.0" prefWidth="75.0" text="Hossz" />
+         <TableColumn fx:id="colId" minWidth="50.0" prefWidth="200.0" text="Id" />
+         <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="200.0" text="Cím" />
+         <TableColumn fx:id="colLeiras" minWidth="50.0" prefWidth="200.0" text="Leírás" />
+         <TableColumn fx:id="colMegjelenesiEv" minWidth="50.0" prefWidth="75.0" text="Megjelenés" />
+         <TableColumn fx:id="colRendezoNev" minWidth="50.0" prefWidth="75.0" text="Rendező neve" />
          <TableColumn fx:id="colErtekeles" minWidth="50.0" prefWidth="75.0" text="Értékelés" />
+         <TableColumn fx:id="colKategoria" minWidth="50.0" prefWidth="75.0" text="Kategória" />
+         <TableColumn fx:id="colSzineszek" minWidth="50.0" prefWidth="150.0" text="Szinészek" />
      </columns>
    </TableView>
 </VBox>

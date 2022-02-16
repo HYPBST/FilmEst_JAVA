@@ -1,3 +1,4 @@
+/*
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.Controller;
@@ -64,3 +65,4 @@ public class HozzadController extends Controller {
 
     }
 }
+*/

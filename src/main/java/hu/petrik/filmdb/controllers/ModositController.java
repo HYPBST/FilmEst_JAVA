@@ -1,3 +1,4 @@
+/*
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.Controller;
@@ -90,3 +91,4 @@ public class ModositController extends Controller {
         inputErtekeles.setValue(modositando.getErtekeles());
     }
 }
+*/

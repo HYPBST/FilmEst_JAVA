@@ -7,7 +7,7 @@
     <groupId>hu.petrik</groupId>
     <artifactId>FilmDb</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>FilmDb</name>
+    <name>filmest</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

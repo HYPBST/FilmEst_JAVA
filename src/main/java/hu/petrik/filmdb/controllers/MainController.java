@@ -14,24 +14,35 @@ public class MainController extends Controller {
     @FXML
     private TableView<Film> filmTable;
     @FXML
+    private TableColumn<Film, String> colId;
+    @FXML
     private TableColumn<Film, String> colCim;
+    @FXML
+    private TableColumn<Film, String> colLeiras;
+    @FXML
+    private TableColumn<Film, Integer> colMegjelenesiEv;
+    @FXML
+    private TableColumn<Film, Integer> colRendezoNev;
+    @FXML
+    private TableColumn<Film, Integer> colErtekeles;
     @FXML
     private TableColumn<Film, String> colKategoria;
     @FXML
-    private TableColumn<Film, Integer> colHossz;
-    @FXML
-    private TableColumn<Film, Integer> colErtekeles;
+    public TableColumn<Film,String> colSzineszek;
 
     public void initialize(){
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
-        //a tárolt objektumban egy getCim függvényt fog keresni.
-        colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
-        colHossz.setCellValueFactory(new PropertyValueFactory<>("hossz"));
+        colLeiras.setCellValueFactory(new PropertyValueFactory<>("leiras"));
+        colMegjelenesiEv.setCellValueFactory(new PropertyValueFactory<>("megjelenesiEv"));
         colErtekeles.setCellValueFactory(new PropertyValueFactory<>("ertekeles"));
+        colRendezoNev.setCellValueFactory(new PropertyValueFactory<>("rendezoNev"));
+        colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoriak"));
+        colSzineszek.setCellValueFactory(new PropertyValueFactory<>("szineszek"));
         filmListaFeltolt();
     }
 
-    @FXML
+   /* @FXML
     public void onModositasButtonClick(ActionEvent actionEvent) {
         int selectedIndex = filmTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1){
@@ -81,10 +92,9 @@ public class MainController extends Controller {
             hibaKiir(e);
         }
     }
-
+*/
     private void filmListaFeltolt(){
         try {
-
             List<Film> filmList = FilmApi.getFilmek();
             filmTable.getItems().clear();
             for(Film film: filmList){

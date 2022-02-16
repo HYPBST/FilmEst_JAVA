@@ -9,13 +9,14 @@ import java.util.List;
 
 public class FilmApi {
 
-    private static final String BASE_URL = "http://localhost:8000";
-    private static final String FILM_API_URL = BASE_URL+"/api/film";
+    private static final String BASE_URL = "http://127.0.0.1:8000/";
+    private static final String FILM_API_URL = BASE_URL+"api/film";
 
     public static List<Film> getFilmek() throws IOException {
         Response response = RequestHandler.get(FILM_API_URL);
         String json = response.getContent();
         Gson jsonConvert = new Gson();
+        System.out.println(response.responseCode);
         if (response.getResponseCode() >= 400){
             String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
             throw new IOException(message);

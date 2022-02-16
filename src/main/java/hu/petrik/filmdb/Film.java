@@ -3,51 +3,82 @@ package hu.petrik.filmdb;
 public class Film {
     private int id;
     private String cim;
-    private String kategoria;
-    private int hossz;
+    private String leiras;
+    private int megjelenesiEv;
     private int ertekeles;
+    private String rendezoNev;
+    private String kategoriak;
+    private String szineszek;
 
-    public Film(int id, String cim, String kategoria, int hossz, int ertekeles) {
+    public Film(int id, String cim, String leiras, int megjelenesiEv, int ertekeles, String rendezoNev, String kategoriak, String szineszek) {
         this.id = id;
         this.cim = cim;
-        this.kategoria = kategoria;
-        this.hossz = hossz;
+        this.leiras = leiras;
+        this.megjelenesiEv = megjelenesiEv;
         this.ertekeles = ertekeles;
+        this.rendezoNev = rendezoNev;
+        this.kategoriak = kategoriak;
+        this.szineszek = szineszek;
     }
 
     public int getId() {
         return id;
     }
 
+
     public String getCim() {
         return cim;
-    }
-
-    public String getKategoria() {
-        return kategoria;
-    }
-
-    public int getHossz() {
-        return hossz;
-    }
-
-    public int getErtekeles() {
-        return ertekeles;
     }
 
     public void setCim(String cim) {
         this.cim = cim;
     }
 
-    public void setKategoria(String kategoria) {
-        this.kategoria = kategoria;
+    public String getLeiras() {
+        return leiras;
     }
 
-    public void setHossz(int hossz) {
-        this.hossz = hossz;
+    public void setLeiras(String leiras) {
+        this.leiras = leiras;
+    }
+
+    public int getMegjelenesiEv() {
+        return megjelenesiEv;
+    }
+
+    public void setMegjelenesiEv(int megjelenesiEv) {
+        this.megjelenesiEv = megjelenesiEv;
+    }
+
+    public int getErtekeles() {
+        return ertekeles;
     }
 
     public void setErtekeles(int ertekeles) {
         this.ertekeles = ertekeles;
+    }
+
+    public String getRendezoNev() {
+        return rendezoNev;
+    }
+
+    public void setRendezoNev(String rendezoNev) {
+        this.rendezoNev = rendezoNev;
+    }
+
+    public String getKategoriak() {
+        return kategoriak;
+    }
+
+    public void setKategoriak(String kategoriak) {
+        this.kategoriak = kategoriak;
+    }
+
+    public String getSzineszek() {
+        return szineszek;
+    }
+
+    public void setSzineszek(String szineszek) {
+        this.szineszek = szineszek;
     }
 }

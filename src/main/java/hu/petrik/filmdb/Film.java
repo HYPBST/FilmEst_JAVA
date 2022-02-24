@@ -1,5 +1,8 @@
 package hu.petrik.filmdb;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Film {
     private int id;
     private String cim;
@@ -9,6 +12,7 @@ public class Film {
     private String rendezoNev;
     private String kategoriak;
     private String szineszek;
+    private List<Film> filmek;
 
     public Film(int id, String cim, String leiras, int megjelenesiEv, int ertekeles, String rendezoNev, String kategoriak, String szineszek) {
         this.id = id;
@@ -80,5 +84,9 @@ public class Film {
 
     public void setSzineszek(String szineszek) {
         this.szineszek = szineszek;
+    }
+
+    public List<Film> getFilmek() {
+        return filmek;
     }
 }

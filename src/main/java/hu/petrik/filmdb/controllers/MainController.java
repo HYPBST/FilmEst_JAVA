@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class MainController extends Controller {
+    Film film;
     @FXML
     private TextArea txtAdatok;
     @FXML
@@ -27,7 +28,12 @@ public class MainController extends Controller {
     public void initialize(){
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        filmListaFeltolt();
+        //filmListaFeltolt();
+        try {
+            FilmApi.ObjektumokLetrehozasa();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
    /* @FXML
@@ -82,14 +88,10 @@ public class MainController extends Controller {
     }
 */
     private void filmListaFeltolt(){
-        try {
-            List<Film> filmList = FilmApi.getFilmek();
-            filmTable.getItems().clear();
-            for(Film film: filmList){
-                filmTable.getItems().add(film);
-            }
-        } catch (IOException e) {
-            hibaKiir(e);
+        List<Film> filmList = film.getFilmek();
+        filmTable.getItems().clear();
+        for(Film film: filmList){
+            filmTable.getItems().add(film);
         }
     }
 

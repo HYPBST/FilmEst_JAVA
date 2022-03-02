@@ -4,7 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <TabPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.filmdb.controllers.MainController">
 <tabs>
     <Tab closable="false" text="Filmek">
@@ -20,14 +19,79 @@
                       <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>-->
-                <TableView fx:id="filmTable" minHeight="200.0" prefHeight="200.0"
-                           prefWidth="500.0" VBox.vgrow="ALWAYS" onMouseClicked="#onItemSelect">
+                <TableView fx:id="filmTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colId" minWidth="50.0" prefWidth="250.0" text="ID"  />
-                        <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="250.0" text="Cím"  />
+                        <TableColumn fx:id="colFilmId" minWidth="50.0" prefWidth="250.0" text="ID" />
+                        <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="250.0" text="Cím" />
                     </columns>
                 </TableView>
                 <TextArea fx:id="txtAdatok" editable="false" prefHeight="100.0" wrapText="true" />
+            </VBox>
+        </content>
+    </Tab>
+    <Tab closable="false" text="Kategóriák">
+        <content>
+            <VBox spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                   <children>
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                   </children>
+                </HBox>-->
+                <TableView fx:id="kategoriaTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colKategoriaId" minWidth="50.0" prefWidth="250.0" text="ID" />
+                        <TableColumn fx:id="colKategoria" minWidth="50.0" prefWidth="250.0" text="Kategória" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </content>
+    </Tab>
+    <Tab closable="false" text="Rendezők">
+        <content>
+            <VBox spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                   <children>
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                   </children>
+                </HBox>-->
+                <TableView fx:id="rendezoTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colRendezoId" minWidth="50.0" prefWidth="250.0" text="ID" />
+                        <TableColumn fx:id="colRendezo" minWidth="50.0" prefWidth="250.0" text="Név" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </content>
+    </Tab>
+    <Tab closable="false" text="Színészek">
+        <content>
+            <VBox spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                   <children>
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                   </children>
+                </HBox>-->
+                <TableView fx:id="szineszTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colSzineszId" minWidth="50.0" prefWidth="250.0" text="ID" />
+                        <TableColumn fx:id="colSzinesz" minWidth="50.0" prefWidth="250.0" text="Név" />
+                    </columns>
+                </TableView>
             </VBox>
         </content>
     </Tab>

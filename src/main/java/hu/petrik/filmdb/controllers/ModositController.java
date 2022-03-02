@@ -2,7 +2,7 @@
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.Controller;
-import hu.petrik.filmdb.Film;
+import hu.petrik.filmdb.classes.Film;
 import hu.petrik.filmdb.FilmApi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

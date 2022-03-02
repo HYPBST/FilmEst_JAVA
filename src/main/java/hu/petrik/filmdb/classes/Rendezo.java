@@ -1,4 +1,4 @@
-package hu.petrik.filmdb;
+package hu.petrik.filmdb.classes;
 
 public class Rendezo {
     private int id;

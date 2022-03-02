@@ -23,12 +23,13 @@ public class MainController extends Controller {
     private TableColumn<Film, String> colCim;
     @FXML
     private TableColumn<Film, String> colId;
+    List<Film> filmList;
 
 
     public void initialize(){
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        //filmListaFeltolt();
+        filmListaFeltolt();
         try {
             FilmApi.ObjektumokLetrehozasa();
         } catch (IOException e) {
@@ -88,7 +89,11 @@ public class MainController extends Controller {
     }
 */
     private void filmListaFeltolt(){
-        List<Film> filmList = film.getFilmek();
+        try {
+            filmList = FilmApi.ObjektumokLetrehozasa();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         filmTable.getItems().clear();
         for(Film film: filmList){
             filmTable.getItems().add(film);
@@ -100,10 +105,10 @@ public class MainController extends Controller {
             Film kivalasztott = filmTable.getSelectionModel().getSelectedItem();
             StringBuilder  sb=new StringBuilder();
             sb.append("Megjelenési év: ").append(kivalasztott.getMegjelenesiEv()).append("\n");
-            sb.append("Rendező: ").append(kivalasztott.getRendezoNev()).append("\n");
+            //sb.append("Rendező: ").append(kivalasztott.getRendezoNev()).append("\n");
             sb.append("Leírás: ").append(kivalasztott.getLeiras()).append("\n");
-            sb.append("Kategóriák: ").append(kivalasztott.getKategoriak()).append("\n");
-            sb.append("Színészek: ").append(kivalasztott.getSzineszek());
+           // sb.append("Kategóriák: ").append(kivalasztott.getKategoriak()).append("\n");
+            //sb.append("Színészek: ").append(kivalasztott.getSzineszek());
             sb.append("Értékelés: ").append(kivalasztott.getErtekeles()).append("\n");
             txtAdatok.setText(sb.toString());
         }

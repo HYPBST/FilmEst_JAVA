@@ -14,18 +14,17 @@ public class FilmApi {
     private static final String BASE_URL = "http://127.0.0.1:8000/";
     private static final String FILM_API_URL = BASE_URL+"api/filmek";
 
-    public static void ObjektumokLetrehozasa() throws IOException {
+    public static List<Film> ObjektumokLetrehozasa() throws IOException {
         Response response = RequestHandler.get(FILM_API_URL);
         String json = response.getContent();
-        System.out.println(json);
         Gson jsonConvert = new Gson();
         System.out.println(response.responseCode);
         if (response.getResponseCode() >= 400){
             String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
             throw new IOException(message);
         }
-        //Type type = new TypeToken<List<Film>>(){}.getType();
-        //return jsonConvert.fromJson(json,type);
+        Type type = new TypeToken<List<Film>>(){}.getType();
+        return jsonConvert.fromJson(json,type);
     }
 
     public static Film filmHozzaadasa(Film ujFilm) throws IOException {

@@ -35,13 +35,13 @@
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </padding>
-                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
                    <children>
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onKategoriaHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onKategoriaModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onKategoriaTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
-                </HBox>-->
+                </HBox>
                 <TableView fx:id="kategoriaTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colKategoriaId" minWidth="50.0" prefWidth="250.0" text="ID" />
@@ -57,13 +57,13 @@
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </padding>
-                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
                    <children>
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRendezoHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRendezoModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRendezoTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
-                </HBox>-->
+                </HBox>
                 <TableView fx:id="rendezoTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colRendezoId" minWidth="50.0" prefWidth="250.0" text="ID" />
@@ -79,13 +79,13 @@
                 <padding>
                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                 </padding>
-                <!--<HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
                    <children>
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onModositasButtonClick" prefWidth="100.0" text="Módosítás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSzineszHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSzineszModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSzineszTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
-                </HBox>-->
+                </HBox>
                 <TableView fx:id="szineszTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colSzineszId" minWidth="50.0" prefWidth="250.0" text="ID" />

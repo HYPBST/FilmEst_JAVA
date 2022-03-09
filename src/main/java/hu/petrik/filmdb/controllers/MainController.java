@@ -8,6 +8,7 @@ import hu.petrik.filmdb.classes.Szinesz;
 import hu.petrik.filmdb.pivot.FilmKategoriai;
 import hu.petrik.filmdb.pivot.FilmRendezoi;
 import hu.petrik.filmdb.pivot.FilmSzineszei;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -76,7 +77,7 @@ public class MainController extends Controller {
         }
         Film modositando = filmTable.getSelectionModel().getSelectedItem();
         try {
-            ModositController modositas = (ModositController) ujAblak("modosit-view.fxml",
+            ModositController modositas = (ModositController) ujAblak("filmmodosit-view.fxml",
                     "Film módosítása", 320, 400);
             modositas.setModositando(modositando);
             modositas.getStage().setOnHiding(event -> filmTable.refresh());
@@ -109,7 +110,7 @@ public class MainController extends Controller {
     @FXML
     public void onHozzadasButtonClick(ActionEvent actionEvent) {
         try {
-            Controller hozzadas = ujAblak("hozzaad-view.fxml", "Film hozzáadása",
+            Controller hozzadas = ujAblak("filmhozzaad-view.fxml", "Film hozzáadása",
                     320, 400);
             hozzadas.getStage().setOnCloseRequest(event -> filmListaFeltolt());
             hozzadas.getStage().show();
@@ -220,4 +221,102 @@ public class MainController extends Controller {
 
     }
 
+    public void onKategoriaHozzadasButtonClick(ActionEvent actionEvent) {
+        try {
+            Controller hozzadas = ujAblak("kategoria-view.fxml", "Kategória hozzáadása",
+                    320, 400);
+            hozzadas.getStage().setOnCloseRequest(event -> kategoriaListaFeltolt());
+            hozzadas.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void onKategoriaModositasButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onKategoriaTorlesButtonClick(ActionEvent actionEvent) {
+        int selectedIndex = kategoriaTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("A törléshez előbb válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Kategoria torlendoKategoria = kategoriaTable.getSelectionModel().getSelectedItem();
+        if (!confirm("Biztos hogy törölni szeretné az alábbi kategórát: "+torlendoKategoria.getKategoria())){
+            return;
+        }
+        try {
+            boolean sikeres = FilmApi.kategoriaTorles(torlendoKategoria.getId());
+            alert(sikeres ? "Sikeres törlés": "Sikertele törlés");
+            kategoriaListaFeltolt();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void onRendezoHozzadasButtonClick(ActionEvent actionEvent) {
+        try {
+            Controller hozzadas = ujAblak("kategoria-view.fxml", "Rendező",
+                    320, 400);
+            hozzadas.getStage().setOnCloseRequest(event -> rendezoListaFeltolt());
+            hozzadas.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void onRendezoModositasButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onRendezoTorlesButtonClick(ActionEvent actionEvent) {
+        int selectedIndex = rendezoTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("A törléshez előbb válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Rendezo torlendoRendezo = rendezoTable.getSelectionModel().getSelectedItem();
+        if (!confirm("Biztos hogy törölni szeretné az alábbi rendezőt: "+torlendoRendezo.getRendezoNev())){
+            return;
+        }
+        try {
+            boolean sikeres = FilmApi.rendezoTorles(torlendoRendezo.getId());
+            alert(sikeres ? "Sikeres törlés": "Sikertele törlés");
+            rendezoListaFeltolt();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void onSzineszHozzadasButtonClick(ActionEvent actionEvent) {
+        try {
+            Controller hozzadas = ujAblak("szinesz-view.fxml", "Rendező",
+                    320, 400);
+            hozzadas.getStage().setOnCloseRequest(event -> szineszListaFeltolt());
+            hozzadas.getStage().show();
+        } catch (Exception e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void onSzineszModositasButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onSzineszTorlesButtonClick(ActionEvent actionEvent) {
+        int selectedIndex = szineszTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("A törléshez előbb válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Szinesz torlendoSzinesz = szineszTable.getSelectionModel().getSelectedItem();
+        if (!confirm("Biztos hogy törölni szeretné az alábbi színészt: "+torlendoSzinesz.getSzineszNev())){
+            return;
+        }
+        try {
+            boolean sikeres = FilmApi.szineszTorles(torlendoSzinesz.getId());
+            alert(sikeres ? "Sikeres törlés": "Sikertele törlés");
+            szineszListaFeltolt();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
 }

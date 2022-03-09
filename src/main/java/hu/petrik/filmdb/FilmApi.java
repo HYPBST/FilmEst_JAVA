@@ -139,4 +139,73 @@ public class FilmApi {
         }
         return response.getResponseCode() == 204;
     }
+    public static boolean kategoriaTorles(int id) throws IOException {
+        Response response = RequestHandler.delete(KATEGORIA_API_URL + "/" + id);
+
+        Gson jsonConvert = new Gson();
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return response.getResponseCode() == 204;
+    }
+    public static Kategoria kategoriaHozzaadas(Kategoria ujKategoria) throws IOException {
+        Gson jsonConvert = new Gson();
+        String kategoriaJson = jsonConvert.toJson(ujKategoria);
+        Response response = RequestHandler.post(KATEGORIA_API_URL, kategoriaJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Kategoria.class);
+    }
+    public static boolean rendezoTorles(int id) throws IOException {
+        Response response = RequestHandler.delete(RENDEZO_API_URL + "/" + id);
+
+        Gson jsonConvert = new Gson();
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return response.getResponseCode() == 204;
+    }
+    public static Rendezo rendezoHozzaadas(Rendezo ujRendezo) throws IOException {
+        Gson jsonConvert = new Gson();
+        String rendezoJson = jsonConvert.toJson(ujRendezo);
+        Response response = RequestHandler.post(RENDEZO_API_URL, rendezoJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Rendezo.class);
+    }
+    public static boolean szineszTorles(int id) throws IOException {
+        Response response = RequestHandler.delete(SZINESZ_API_URL + "/" + id);
+
+        Gson jsonConvert = new Gson();
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return response.getResponseCode() == 204;
+    }
+    public static Szinesz szineszHozzaadas(Szinesz ujSzinesz) throws IOException {
+        Gson jsonConvert = new Gson();
+        String szineszJson = jsonConvert.toJson(ujSzinesz);
+        Response response = RequestHandler.post(SZINESZ_API_URL, szineszJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Szinesz.class);
+    }
 }

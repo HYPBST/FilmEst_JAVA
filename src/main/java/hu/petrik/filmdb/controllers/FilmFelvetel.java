@@ -1,14 +1,21 @@
-/*
+
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.Controller;
 import hu.petrik.filmdb.classes.Film;
 import hu.petrik.filmdb.FilmApi;
+import hu.petrik.filmdb.classes.Kategoria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 
-public class HozzadController extends Controller {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class FilmFelvetel extends Controller {
+    @FXML
+    public MenuButton menub;
     @FXML
     private TextField inputCim;
     @FXML
@@ -17,7 +24,33 @@ public class HozzadController extends Controller {
     private Spinner<Integer> inputHossz;
     @FXML
     private ChoiceBox<Integer> inputErtekeles;
+    public void initialize(){
+        ArrayList<MenuItem> mil=new ArrayList<>();
+        try {
+            for (Kategoria k: FilmApi.getKategoriaList()
+                 ) {
+                CheckBox cb=new CheckBox(k.getKategoria());
+                CustomMenuItem item=new CustomMenuItem(cb);
+                item.addEventHandler();
+                item.setText(k.getKategoria());
+                item.setHideOnClick(false);
+                mil.add(item);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        menub.getItems().setAll(mil);
 
+    }
+
+    public void onFelvetelButtonClick(ActionEvent actionEvent) {
+        for (MenuItem menuItem:menub.getItems().
+        ) {
+            ;
+            System.out.println(menuItem.getText());
+        }
+    }
+    /*
     @FXML
     public void onHozzadButtonClick(ActionEvent actionEvent) {
         String cim = inputCim.getText().trim();
@@ -63,6 +96,6 @@ public class HozzadController extends Controller {
             hibaKiir(e);
         }
 
-    }
+    }*/
 }
-*/
+

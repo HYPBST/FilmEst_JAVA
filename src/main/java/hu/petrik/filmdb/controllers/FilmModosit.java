@@ -1,4 +1,4 @@
-/*
+
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.Controller;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ModositController extends Controller {
+public class FilmModosit extends Controller {
     @FXML
     private TextField inputCim;
     @FXML
@@ -23,7 +23,7 @@ public class ModositController extends Controller {
     @FXML
     private ChoiceBox<Integer> inputErtekeles;
     private Film modositando;
-
+/*
     @FXML
     public void onModositButtonClick(ActionEvent actionEvent) {
         String cim = inputCim.getText().trim();
@@ -89,6 +89,6 @@ public class ModositController extends Controller {
         inputKategoria.setText(modositando.getKategoria());
         inputHossz.getValueFactory().setValue(modositando.getHossz());
         inputErtekeles.setValue(modositando.getErtekeles());
-    }
+    }*/
 }
-*/
+

@@ -9,6 +9,10 @@ public class Szinesz {
         this.szineszNev = szineszNev;
     }
 
+    public Szinesz(String szineszNev) {
+        this.szineszNev = szineszNev;
+    }
+
     public int getId() {
         return id;
     }

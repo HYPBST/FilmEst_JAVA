@@ -25,7 +25,7 @@ public class FilmApi {
     private static final String FILMRENDEZO_API_URL = BASE_URL+"api/filmrendezo";
     private static final String FILMSZINESZ_API_URL = BASE_URL+"api/filmszinesz";
 
-    public static List<Film> FilmekLetrehozasa() throws IOException {
+    public static List<Film> getFilmList() throws IOException {
         Response response = RequestHandler.get(FILM_API_URL);
         String json = response.getContent();
         Gson jsonConvert = new Gson();
@@ -36,7 +36,7 @@ public class FilmApi {
         Type type = new TypeToken<List<Film>>(){}.getType();
         return jsonConvert.fromJson(json,type);
     }
-    public static List<Kategoria> kategoriakLetrehozasa() throws IOException {
+    public static List<Kategoria> getKategoriaList() throws IOException {
         Response response = RequestHandler.get(KATEGORIA_API_URL);
         String json = response.getContent();
         Gson jsonConvert = new Gson();
@@ -47,7 +47,7 @@ public class FilmApi {
         Type type = new TypeToken<List<Kategoria>>(){}.getType();
         return jsonConvert.fromJson(json,type);
     }
-    public static List<Rendezo> RendezokLetrehozasa() throws IOException {
+    public static List<Rendezo> getRendezokList() throws IOException {
         Response response = RequestHandler.get(RENDEZO_API_URL);
         String json = response.getContent();
         Gson jsonConvert = new Gson();
@@ -58,7 +58,7 @@ public class FilmApi {
         Type type = new TypeToken<List<Rendezo>>(){}.getType();
         return jsonConvert.fromJson(json,type);
     }
-    public static List<Szinesz> SzineszekLetrehozasa() throws IOException {
+    public static List<Szinesz> getSzineszekList() throws IOException {
         Response response = RequestHandler.get(SZINESZ_API_URL);
         String json = response.getContent();
         Gson jsonConvert = new Gson();
@@ -150,6 +150,18 @@ public class FilmApi {
         }
         return response.getResponseCode() == 204;
     }
+    public static Kategoria kategoriaModositas(Kategoria modositando) throws IOException {
+        Gson jsonConvert = new Gson();
+        String kategoriaJson = jsonConvert.toJson(modositando);
+        Response response = RequestHandler.put(KATEGORIA_API_URL+"/"+modositando.getId(), kategoriaJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Kategoria.class);
+    }
     public static Kategoria kategoriaHozzaadas(Kategoria ujKategoria) throws IOException {
         Gson jsonConvert = new Gson();
         String kategoriaJson = jsonConvert.toJson(ujKategoria);
@@ -173,6 +185,18 @@ public class FilmApi {
         }
         return response.getResponseCode() == 204;
     }
+    public static Rendezo rendezoModositas(Rendezo modositando) throws IOException {
+        Gson jsonConvert = new Gson();
+        String rendezoJson = jsonConvert.toJson(modositando);
+        Response response = RequestHandler.put(RENDEZO_API_URL+"/"+modositando.getId(), rendezoJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Rendezo.class);
+    }
     public static Rendezo rendezoHozzaadas(Rendezo ujRendezo) throws IOException {
         Gson jsonConvert = new Gson();
         String rendezoJson = jsonConvert.toJson(ujRendezo);
@@ -195,6 +219,18 @@ public class FilmApi {
             throw new IOException(message);
         }
         return response.getResponseCode() == 204;
+    }
+    public static Szinesz szineszModositas(Szinesz modositando) throws IOException {
+        Gson jsonConvert = new Gson();
+        String szineszJson = jsonConvert.toJson(modositando);
+        Response response = RequestHandler.put(SZINESZ_API_URL+"/"+modositando.getId(), szineszJson);
+
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return jsonConvert.fromJson(json, Szinesz.class);
     }
     public static Szinesz szineszHozzaadas(Szinesz ujSzinesz) throws IOException {
         Gson jsonConvert = new Gson();

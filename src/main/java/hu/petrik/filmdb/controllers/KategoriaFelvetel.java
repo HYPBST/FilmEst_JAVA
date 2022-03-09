@@ -10,11 +10,16 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.List;
 
-
-public class KategoriaController extends Controller {
+public class KategoriaFelvetel extends Controller {
     @FXML
     private TextField felvetelKategoria;
-
+    public void initialize(){
+        felvetelKategoria.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\sa-zA-Z*")) {
+                felvetelKategoria.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+            }
+        });
+    }
     public void onFelvetelButtonClick(ActionEvent actionEvent) {
         String kategoria=felvetelKategoria.getText().trim();
         if(kategoria.isEmpty()){
@@ -23,9 +28,9 @@ public class KategoriaController extends Controller {
         }
 
         try {
-            List<Kategoria> kategoriaList=FilmApi.kategoriakLetrehozasa();
+            List<Kategoria> kategoriaList= FilmApi.getKategoriaList();
             for (Kategoria k:kategoriaList
-                 ) {
+            ) {
                 System.out.println(k.getKategoria());
                 System.out.println(kategoria);
                 if (k.getKategoria().equalsIgnoreCase(kategoria)){

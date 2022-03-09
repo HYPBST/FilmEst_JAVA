@@ -9,6 +9,10 @@ public class Rendezo {
         this.rendezoNev = rendezoNev;
     }
 
+    public Rendezo(String rendezoNev) {
+        this.rendezoNev = rendezoNev;
+    }
+
     public int getId() {
         return id;
     }

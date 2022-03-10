@@ -58,7 +58,7 @@ public class FilmModosit extends Controller {
         kategoriaList=modositando.getKategoriak();
         szineszList=modositando.getSzineszek();
         rendezoList=modositando.getRendezok();
-        ArrayList<MenuItem> kategoriak=new ArrayList<>();
+        ArrayList<CustomMenuItem> kategoriak=new ArrayList<>();
         ArrayList<MenuItem> szineszek=new ArrayList<>();
         ArrayList<MenuItem> rendezok=new ArrayList<>();
         try {
@@ -70,6 +70,7 @@ public class FilmModosit extends Controller {
                     if (kat.getKategoria().equalsIgnoreCase(k.getKategoria())){
                         CheckBox cb=new CheckBox(k.getKategoria());
                         cb.setSelected(true);
+                        cb.setUserData(kat);
                         CustomMenuItem item=new CustomMenuItem(cb);
                         item.setText(k.getKategoria());
                         item.setHideOnClick(false);
@@ -137,10 +138,10 @@ public class FilmModosit extends Controller {
         menuKategoria.getItems().setAll(kategoriak);
         menuSzineszek.getItems().setAll(szineszek);
         menuRendezok.getItems().setAll(rendezok);
-        for (MenuItem mi:menuKategoria.getItems()
-             ) {
-            System.out.println(mi.getProperties());
-
+        for (CustomMenuItem mi:kategoriak) {
+            CheckBox cb = (CheckBox) mi.getContent();
+            Kategoria kategoria = (Kategoria)cb.getUserData();
+            cb.isSelected();
         }
     }
 

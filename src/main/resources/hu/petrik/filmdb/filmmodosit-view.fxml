@@ -6,5 +6,18 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.filmdb.controllers.FilmModosit">
-
+    <Label text="Cím:"/>
+    <TextField fx:id="txtCim" promptText="Kategória" />
+    <Label text="Leírás:"/>
+    <TextArea fx:id="txtLeiras" promptText="Kategória" />
+    <Label text="Megjelenési év:"/>
+    <TextField fx:id="txtEv" promptText="Kategória" />
+    <Label text="értékelés:"/>
+    <TextField fx:id="txtErtekeles" promptText="Kategória" />
+    <Label text="Img Url:"/>
+    <TextField fx:id="txtImgUrl" promptText="Kategória" />
+    <MenuButton text="Kategóriák" fx:id="menuKategoria"/>
+    <MenuButton text="Színészek" fx:id="menuSzineszek"/>
+    <MenuButton text="Rendezők" fx:id="menuRendezok"/>
+    <Button text="Módosít" onAction="#onModositButtonClick"/>
 </VBox>

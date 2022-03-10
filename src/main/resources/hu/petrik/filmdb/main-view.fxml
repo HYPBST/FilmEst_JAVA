@@ -15,8 +15,8 @@
                 <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
                    <children>
                       <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmHozzadasButtonClick" prefWidth="100.0" text="Hozááadás" />
-                     <!-- <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmModositasButtonClick" prefWidth="100.0" text="Módosítás" />
-                      <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmTorlesButtonClick" prefWidth="100.0" text="Törlés" />-->
+                     <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmModositasButtonClick" prefWidth="100.0" text="Módosítás" />
+                    <!--  <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmTorlesButtonClick" prefWidth="100.0" text="Törlés" />-->
                    </children>
                 </HBox>
                 <TableView fx:id="filmTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">

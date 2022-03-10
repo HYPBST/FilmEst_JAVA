@@ -31,7 +31,6 @@ public class FilmFelvetel extends Controller {
                  ) {
                 CheckBox cb=new CheckBox(k.getKategoria());
                 CustomMenuItem item=new CustomMenuItem(cb);
-                item.addEventHandler();
                 item.setText(k.getKategoria());
                 item.setHideOnClick(false);
                 mil.add(item);
@@ -44,7 +43,7 @@ public class FilmFelvetel extends Controller {
     }
 
     public void onFelvetelButtonClick(ActionEvent actionEvent) {
-        for (MenuItem menuItem:menub.getItems().
+        for (MenuItem menuItem:menub.getItems()
         ) {
             ;
             System.out.println(menuItem.getText());

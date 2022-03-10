@@ -4,26 +4,147 @@ package hu.petrik.filmdb.controllers;
 import hu.petrik.filmdb.Controller;
 import hu.petrik.filmdb.classes.Film;
 import hu.petrik.filmdb.FilmApi;
+import hu.petrik.filmdb.classes.Kategoria;
+import hu.petrik.filmdb.classes.Rendezo;
+import hu.petrik.filmdb.classes.Szinesz;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FilmModosit extends Controller {
     @FXML
-    private TextField inputCim;
+    public MenuButton menuKategoria;
     @FXML
-    private TextField inputKategoria;
+    public MenuButton menuSzineszek;
     @FXML
-    private Spinner<Integer> inputHossz;
+    public MenuButton menuRendezok;
     @FXML
-    private ChoiceBox<Integer> inputErtekeles;
+    private TextField txtCim;
+    @FXML
+    private TextArea txtLeiras;
+    @FXML
+    private TextField txtEv;
+    @FXML
+    private TextField txtErtekeles;
+    @FXML
+    private TextField txtImgUrl;
     private Film modositando;
-/*
+    private List<Kategoria> kategoriaList;
+    private List<Rendezo> rendezoList;
+    private List<Szinesz> szineszList;
+    public void onModositButtonClick(ActionEvent actionEvent) {
+    }
+
+    public Film getModositando() {
+        return modositando;
+    }
+
+    public void setModositando(Film modositando) {
+        this.modositando = modositando;
+        ertekekBeallitasa();
+    }
+
+    private void ertekekBeallitasa() {
+        txtCim.setText(modositando.getCim());
+        txtLeiras.setText(modositando.getLeiras());
+        txtEv.setText(String.valueOf( modositando.getMegjelenesiEv()));
+        txtErtekeles.setText(String.valueOf( modositando.getErtekeles()));
+        txtImgUrl.setText(modositando.getImageUrl());
+        kategoriaList=modositando.getKategoriak();
+        szineszList=modositando.getSzineszek();
+        rendezoList=modositando.getRendezok();
+        ArrayList<MenuItem> kategoriak=new ArrayList<>();
+        ArrayList<MenuItem> szineszek=new ArrayList<>();
+        ArrayList<MenuItem> rendezok=new ArrayList<>();
+        try {
+            for (Kategoria k: FilmApi.getKategoriaList()
+            ) {
+                boolean bennevan=false;
+                for (Kategoria kat:kategoriaList
+                     ) {
+                    if (kat.getKategoria().equalsIgnoreCase(k.getKategoria())){
+                        CheckBox cb=new CheckBox(k.getKategoria());
+                        cb.setSelected(true);
+                        CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setText(k.getKategoria());
+                        item.setHideOnClick(false);
+                        kategoriak.add(item);
+                        bennevan=true;
+                    }
+                }
+                if(!bennevan){
+                    CheckBox cb=new CheckBox(k.getKategoria());
+                    CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setText(k.getKategoria());
+                    item.setHideOnClick(false);
+                    kategoriak.add(item);
+                }
+            }
+            for (Szinesz sz:FilmApi.getSzineszekList()
+                 ) {
+                boolean bennevan=false;
+                for (Szinesz szin:szineszList
+                ) {
+                    if (szin.getSzineszNev().equalsIgnoreCase(sz.getSzineszNev())){
+                        CheckBox cb=new CheckBox(sz.getSzineszNev());
+                        cb.setSelected(true);
+                        CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setText(sz.getSzineszNev());
+                        item.setHideOnClick(false);
+                        szineszek.add(item);
+                        bennevan=true;
+                    }
+                }
+                if(!bennevan){
+                    CheckBox cb=new CheckBox(sz.getSzineszNev());
+                    CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setText(sz.getSzineszNev());
+                    item.setHideOnClick(false);
+                    szineszek.add(item);
+                }
+            }
+            for (Rendezo r:FilmApi.getRendezokList()
+            ) {
+                boolean bennevan=false;
+                for (Rendezo ren:rendezoList
+                ) {
+                    if (ren.getRendezoNev().equalsIgnoreCase(r.getRendezoNev())){
+                        CheckBox cb=new CheckBox(r.getRendezoNev());
+                        cb.setSelected(true);
+                        CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setText(r.getRendezoNev());
+                        item.setHideOnClick(false);
+                        rendezok.add(item);
+                        bennevan=true;
+                    }
+                }
+                if (!bennevan){
+                    CheckBox cb=new CheckBox(r.getRendezoNev());
+                    CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setText(r.getRendezoNev());
+                    item.setHideOnClick(false);
+                    rendezok.add(item);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        menuKategoria.getItems().setAll(kategoriak);
+        menuSzineszek.getItems().setAll(szineszek);
+        menuRendezok.getItems().setAll(rendezok);
+        for (MenuItem mi:menuKategoria.getItems()
+             ) {
+            System.out.println(mi.getProperties());
+
+        }
+    }
+
+    /*
     @FXML
     public void onModositButtonClick(ActionEvent actionEvent) {
         String cim = inputCim.getText().trim();
@@ -74,21 +195,6 @@ public class FilmModosit extends Controller {
             e.printStackTrace();
         }
     }
-
-    public Film getModositando() {
-        return modositando;
-    }
-
-    public void setModositando(Film modositando) {
-        this.modositando = modositando;
-        ertekekBeallitasa();
-    }
-
-    private void ertekekBeallitasa() {
-        inputCim.setText(modositando.getCim());
-        inputKategoria.setText(modositando.getKategoria());
-        inputHossz.getValueFactory().setValue(modositando.getHossz());
-        inputErtekeles.setValue(modositando.getErtekeles());
-    }*/
+*/
 }
 

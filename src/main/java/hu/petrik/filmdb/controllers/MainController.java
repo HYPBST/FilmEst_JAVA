@@ -241,7 +241,7 @@ public class MainController extends Controller {
             RendezoModosit modositas = (RendezoModosit) ujAblak("rendezomodosit-view.fxml",
                     "Kategória", 320, 400);
             modositas.setModositando(modositando);
-            modositas.getStage().setOnHiding(event -> rendezoTable.refresh());
+            modositas.getStage().setOnHiding(event -> rendezoListaFeltolt());
             modositas.getStage().show();
         } catch (IOException e) {
             hibaKiir(e);
@@ -289,7 +289,7 @@ public class MainController extends Controller {
             SzineszModosit modositas = (SzineszModosit) ujAblak("szineszmodosit-view.fxml",
                     "Kategória", 320, 400);
             modositas.setModositando(modositando);
-            modositas.getStage().setOnHiding(event -> szineszTable.refresh());
+            modositas.getStage().setOnHiding(event -> szineszListaFeltolt());
             modositas.getStage().show();
         } catch (IOException e) {
             hibaKiir(e);
@@ -314,7 +314,7 @@ public class MainController extends Controller {
             hibaKiir(e);
         }
     }
-    /*
+
     public void onFilmModositasButtonClick(ActionEvent actionEvent) {
         int selectedIndex = filmTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1){
@@ -326,13 +326,13 @@ public class MainController extends Controller {
             FilmModosit modositas = (FilmModosit) ujAblak("filmmodosit-view.fxml",
                     "Film", 320, 400);
             modositas.setModositando(modositando);
-            modositas.getStage().setOnHiding(event -> filmTable.refresh());
+            modositas.getStage().setOnHiding(event -> filmListaFeltolt());
             modositas.getStage().show();
         } catch (IOException e) {
             hibaKiir(e);
         }
     }
-
+/*
     public void onFilmTorlesButtonClick(ActionEvent actionEvent) {
         int selectedIndex = filmTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1){

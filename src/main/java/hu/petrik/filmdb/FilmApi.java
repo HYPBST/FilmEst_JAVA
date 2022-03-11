@@ -121,6 +121,7 @@ public class FilmApi {
         Response response = RequestHandler.put(FILM_API_URL+"/"+modositando.getId(), filmJson);
 
         String json = response.getContent();
+        System.out.println(filmJson);
         if (response.getResponseCode() >= 400){
             String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
             throw new IOException(message);

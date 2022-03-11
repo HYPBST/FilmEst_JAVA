@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +33,20 @@ public class FilmModosit extends Controller {
     @FXML
     private TextField txtImgUrl;
     private Film modositando;
-    private List<Kategoria> kategoriaList;
-    private List<Rendezo> rendezoList;
-    private List<Szinesz> szineszList;
-    public void onModositButtonClick(ActionEvent actionEvent) {
+    private List<Kategoria> kategoriaListUj;
+    private List<Rendezo> rendezoListUj;
+    private List<Szinesz> szineszListUj;
+    public void initialize() {
+        txtErtekeles.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtErtekeles.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        txtEv.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                txtEv.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 
     public Film getModositando() {
@@ -55,23 +64,24 @@ public class FilmModosit extends Controller {
         txtEv.setText(String.valueOf( modositando.getMegjelenesiEv()));
         txtErtekeles.setText(String.valueOf( modositando.getErtekeles()));
         txtImgUrl.setText(modositando.getImageUrl());
-        kategoriaList=modositando.getKategoriak();
-        szineszList=modositando.getSzineszek();
-        rendezoList=modositando.getRendezok();
+        List<Kategoria> kategoriaList = modositando.getKategoriak();
+        List<Szinesz> szineszList = modositando.getSzineszek();
+        List<Rendezo> rendezoList = modositando.getRendezok();
         ArrayList<CustomMenuItem> kategoriak=new ArrayList<>();
-        ArrayList<MenuItem> szineszek=new ArrayList<>();
-        ArrayList<MenuItem> rendezok=new ArrayList<>();
+        ArrayList<CustomMenuItem> szineszek=new ArrayList<>();
+        ArrayList<CustomMenuItem> rendezok=new ArrayList<>();
         try {
             for (Kategoria k: FilmApi.getKategoriaList()
             ) {
                 boolean bennevan=false;
-                for (Kategoria kat:kategoriaList
+                for (Kategoria kat: kategoriaList
                      ) {
                     if (kat.getKategoria().equalsIgnoreCase(k.getKategoria())){
                         CheckBox cb=new CheckBox(k.getKategoria());
                         cb.setSelected(true);
                         cb.setUserData(kat);
                         CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setUserData(cb);
                         item.setText(k.getKategoria());
                         item.setHideOnClick(false);
                         kategoriak.add(item);
@@ -80,7 +90,9 @@ public class FilmModosit extends Controller {
                 }
                 if(!bennevan){
                     CheckBox cb=new CheckBox(k.getKategoria());
+                    cb.setUserData(k);
                     CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setUserData(cb);
                     item.setText(k.getKategoria());
                     item.setHideOnClick(false);
                     kategoriak.add(item);
@@ -89,12 +101,14 @@ public class FilmModosit extends Controller {
             for (Szinesz sz:FilmApi.getSzineszekList()
                  ) {
                 boolean bennevan=false;
-                for (Szinesz szin:szineszList
+                for (Szinesz szin: szineszList
                 ) {
                     if (szin.getSzineszNev().equalsIgnoreCase(sz.getSzineszNev())){
                         CheckBox cb=new CheckBox(sz.getSzineszNev());
                         cb.setSelected(true);
+                        cb.setUserData(szin);
                         CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setUserData(cb);
                         item.setText(sz.getSzineszNev());
                         item.setHideOnClick(false);
                         szineszek.add(item);
@@ -103,7 +117,9 @@ public class FilmModosit extends Controller {
                 }
                 if(!bennevan){
                     CheckBox cb=new CheckBox(sz.getSzineszNev());
+                    cb.setUserData(sz);
                     CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setUserData(cb);
                     item.setText(sz.getSzineszNev());
                     item.setHideOnClick(false);
                     szineszek.add(item);
@@ -112,12 +128,14 @@ public class FilmModosit extends Controller {
             for (Rendezo r:FilmApi.getRendezokList()
             ) {
                 boolean bennevan=false;
-                for (Rendezo ren:rendezoList
+                for (Rendezo ren: rendezoList
                 ) {
                     if (ren.getRendezoNev().equalsIgnoreCase(r.getRendezoNev())){
                         CheckBox cb=new CheckBox(r.getRendezoNev());
                         cb.setSelected(true);
+                        cb.setUserData(ren);
                         CustomMenuItem item=new CustomMenuItem(cb);
+                        item.setUserData(cb);
                         item.setText(r.getRendezoNev());
                         item.setHideOnClick(false);
                         rendezok.add(item);
@@ -126,7 +144,9 @@ public class FilmModosit extends Controller {
                 }
                 if (!bennevan){
                     CheckBox cb=new CheckBox(r.getRendezoNev());
+                    cb.setUserData(r);
                     CustomMenuItem item=new CustomMenuItem(cb);
+                    item.setUserData(cb);
                     item.setText(r.getRendezoNev());
                     item.setHideOnClick(false);
                     rendezok.add(item);
@@ -138,52 +158,80 @@ public class FilmModosit extends Controller {
         menuKategoria.getItems().setAll(kategoriak);
         menuSzineszek.getItems().setAll(szineszek);
         menuRendezok.getItems().setAll(rendezok);
-        for (CustomMenuItem mi:kategoriak) {
-            CheckBox cb = (CheckBox) mi.getContent();
-            Kategoria kategoria = (Kategoria)cb.getUserData();
-            cb.isSelected();
-        }
+
     }
 
-    /*
+
     @FXML
     public void onModositButtonClick(ActionEvent actionEvent) {
-        String cim = inputCim.getText().trim();
-        String kategoria = inputKategoria.getText().trim();
-        int hossz = 0;
-        int ertekelesIndex = inputErtekeles.getSelectionModel().getSelectedIndex();
+        String cim=txtCim.getText();
+        String leiras=txtLeiras.getText();
+        String ev=txtEv.getText();
+        String ertekeles=txtErtekeles.getText();
+        String url=txtImgUrl.getText();
+        kategoriaListUj=new ArrayList<>();
+        rendezoListUj=new ArrayList<>();
+        szineszListUj=new ArrayList<>();
         if (cim.isEmpty()){
             alert("Cím megadása kötelező");
             return;
         }
-        if (kategoria.isEmpty()){
-            alert("Kategória megadása kötelező");
+        if (leiras.isEmpty()){
+            alert("Leírás megadása kötelező");
             return;
         }
-        try {
-            hossz = inputHossz.getValue();
-        } catch (NullPointerException ex){
-            alert("A hossz megadása kötelező");
-            return;
-        } catch (Exception ex){
-            alert("A hossz csak 1 és 999 közötti szám lehet");
+        if (ev.isEmpty()){
+            alert("Év megadása kötelező");
             return;
         }
-        if (hossz < 1 || hossz > 999) {
-            alert("A hossz csak 1 és 999 közötti szám lehet");
+        if (ertekeles.isEmpty()){
+            alert("Értékelés megadása kötelező");
             return;
         }
-        if (ertekelesIndex == -1){
-            alert("Értékelés kiválasztása köztelező");
+        if (url.isEmpty()){
+            alert("Url megadása kötelező");
             return;
         }
-        int ertekeles = inputErtekeles.getValue();
+
 
         modositando.setCim(cim);
-        modositando.setKategoria(kategoria);
-        modositando.setErtekeles(ertekeles);
-        modositando.setHossz(hossz);
+        modositando.setErtekeles(Integer.parseInt(ertekeles));
+        modositando.setLeiras(leiras);
+        modositando.setMegjelenesiEv(Integer.parseInt(ev));
+        modositando.setImageUrl(url);
+        for (MenuItem mi:menuKategoria.getItems()) {
+            CheckBox cb = (CheckBox)mi.getUserData() ;
+            Kategoria kategoria = (Kategoria)cb.getUserData();
+            if (cb.isSelected()){
+                kategoriaListUj.add(kategoria);
 
+            }
+
+        }
+        for (Kategoria kat:kategoriaListUj
+             ) {
+            System.out.println(kat.getId());
+            System.out.println(kat.getKategoria());
+        }
+        modositando.setKategoriak(kategoriaListUj);
+        for (MenuItem mi:menuRendezok.getItems()) {
+            CheckBox cb = (CheckBox)mi.getUserData() ;
+            Rendezo rendezo = (Rendezo)cb.getUserData();
+            if (cb.isSelected()){
+                rendezoListUj.add(rendezo);
+            }
+
+        }
+        modositando.setRendezok(rendezoListUj);
+        for (MenuItem mi:menuSzineszek.getItems()) {
+            CheckBox cb = (CheckBox)mi.getUserData() ;
+            Szinesz szinesz = (Szinesz) cb.getUserData();
+            if (cb.isSelected()){
+                szineszListUj.add(szinesz);
+            }
+
+        }
+        modositando.setSzineszek(szineszListUj);
         try {
             Film modositott = FilmApi.filmModositasa(modositando);
             if (modositott != null){
@@ -195,7 +243,7 @@ public class FilmModosit extends Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-*/
 }
 

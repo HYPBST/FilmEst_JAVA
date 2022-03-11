@@ -140,7 +140,10 @@ public class MainController extends Controller {
                     for (Kategoria kategoria : kategoriaList
                     ) {
                         if (filmkategoria.getKategoriaId() == kategoria.getId()) {
-                            film.getKategoriak().add(kategoria);
+                            if(!film.getKategoriak().contains(kategoria)){
+                                film.getKategoriak().add(kategoria);
+                            }
+
                         }
                     }
                 }
@@ -151,7 +154,10 @@ public class MainController extends Controller {
                     for (Rendezo rendezo : rendezoList
                     ) {
                         if (filmrendezo.getRendezoId() == rendezo.getId()) {
-                            film.getRendezok().add(rendezo);
+                            if (!film.getRendezok().contains(rendezo)){
+                                film.getRendezok().add(rendezo);
+                            }
+
                         }
                     }
                 }
@@ -162,7 +168,10 @@ public class MainController extends Controller {
                     for (Szinesz szinesz : szineszList
                     ) {
                         if (filmszinesz.getSzineszId() == szinesz.getId()) {
-                            film.getSzineszek().add(szinesz);
+                            if(!film.getSzineszek().contains(szinesz)){
+                                film.getSzineszek().add(szinesz);
+                            }
+
                         }
                     }
                 }
@@ -326,7 +335,10 @@ public class MainController extends Controller {
             FilmModosit modositas = (FilmModosit) ujAblak("filmmodosit-view.fxml",
                     "Film", 320, 400);
             modositas.setModositando(modositando);
-            modositas.getStage().setOnHiding(event -> filmListaFeltolt());
+            modositas.getStage().setOnHiding(event ->{
+                        filmListaFeltolt();
+                        kapcsolatok();
+            });
             modositas.getStage().show();
         } catch (IOException e) {
             hibaKiir(e);

@@ -7,6 +7,7 @@ import hu.petrik.filmdb.pivot.FilmSzineszei;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Film {
     private int id;
@@ -15,9 +16,9 @@ public class Film {
     private int megjelenesiEv;
     private int ertekeles;
     private String imageUrl;
-    private ArrayList<Kategoria> kategoriak;
-    private ArrayList<Rendezo> rendezok;
-    private ArrayList<Szinesz> szineszek;
+    private List<Kategoria> kategoriak;
+    private List<Rendezo> rendezok;
+    private List<Szinesz> szineszek;
 
 
     public Film(int id, String cim, String leiras, int megjelenesiEv, int ertekeles, String imageUrl) {
@@ -73,11 +74,11 @@ public class Film {
         this.imageUrl = imageUrl;
     }
 
-    public ArrayList<Kategoria> getKategoriak() {
+    public List<Kategoria> getKategoriak() {
         return kategoriak;
     }
 
-    public void setKategoriak(ArrayList<Kategoria> kategoriak) {
+    public void setKategoriak(List<Kategoria> kategoriak) {
         this.kategoriak = kategoriak;
     }
     public String kategoriakToString(){
@@ -114,19 +115,21 @@ public class Film {
         return kimenet.toString();
     }
 
-    public ArrayList<Rendezo> getRendezok() {
+    public List<Rendezo> getRendezok() {
         return rendezok;
     }
 
-    public void setRendezok(ArrayList<Rendezo> rendezok) {
+    public void setRendezok(List<Rendezo> rendezok) {
         this.rendezok = rendezok;
     }
 
-    public ArrayList<Szinesz> getSzineszek() {
+    public List<Szinesz> getSzineszek() {
         return szineszek;
     }
 
-    public void setSzineszek(ArrayList<Szinesz> szineszek) {
+    public void setSzineszek(List<Szinesz> szineszek) {
         this.szineszek = szineszek;
     }
+
+
 }

@@ -105,6 +105,7 @@ public class FilmApi {
     public static Film filmHozzaadasa(Film ujFilm) throws IOException {
         Gson jsonConvert = new Gson();
         String filmJson = jsonConvert.toJson(ujFilm);
+        System.out.println(filmJson);
         Response response = RequestHandler.post(FILM_API_URL, filmJson);
 
         String json = response.getContent();
@@ -118,10 +119,11 @@ public class FilmApi {
     public static Film filmModositasa(Film modositando) throws IOException {
         Gson jsonConvert = new Gson();
         String filmJson = jsonConvert.toJson(modositando);
+
         Response response = RequestHandler.put(FILM_API_URL+"/"+modositando.getId(), filmJson);
 
         String json = response.getContent();
-        System.out.println(filmJson);
+
         if (response.getResponseCode() >= 400){
             String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
             throw new IOException(message);

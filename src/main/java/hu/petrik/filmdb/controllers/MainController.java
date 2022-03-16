@@ -344,7 +344,7 @@ public class MainController extends Controller {
             hibaKiir(e);
         }
     }
-/*
+
     public void onFilmTorlesButtonClick(ActionEvent actionEvent) {
         int selectedIndex = filmTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1){
@@ -362,13 +362,16 @@ public class MainController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
-    }*/
+    }
 
     public void onFilmHozzadasButtonClick(ActionEvent actionEvent) {
         try {
             Controller hozzadas = ujAblak("filmhozzaad-view.fxml", "Film",
                     320, 400);
-            hozzadas.getStage().setOnCloseRequest(event -> filmListaFeltolt());
+            hozzadas.getStage().setOnCloseRequest(event -> {
+                filmListaFeltolt();
+                kapcsolatok();
+            });
             hozzadas.getStage().show();
         } catch (Exception e) {
             hibaKiir(e);

@@ -176,6 +176,14 @@ public class FilmModosit extends Controller {
             alert("Cím megadása kötelező");
             return;
         }
+        boolean valodiUrl=false;
+        if (url.substring(0, 4).equals("www.")||url.substring(0,8).equals("https://")){
+            valodiUrl=true;
+        }
+        if (!valodiUrl){
+            alert("Valódi URL-t kell megadni.");
+            return;
+        }
         if (leiras.isEmpty()){
             alert("Leírás megadása kötelező");
             return;

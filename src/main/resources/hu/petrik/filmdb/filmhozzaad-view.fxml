@@ -16,6 +16,8 @@
     <TextField fx:id="txtErtekeles" promptText="Kategória" />
     <Label text="Img Url:"/>
     <TextField fx:id="txtImgUrl" promptText="Kategória" />
-    <MenuButton text="Kategóriák" fx:id="menub"/>
-  <Button text="Felvétel" onAction="#onFelvetelButtonClick"/>
+    <MenuButton text="Kategóriák" fx:id="menuKategoria"/>
+    <MenuButton text="Színészek" fx:id="menuSzineszek"/>
+    <MenuButton text="Rendezők" fx:id="menuRendezok"/>
+    <Button text="Módosít" onAction="#onFelvetelButtonClick"/>
 </VBox>

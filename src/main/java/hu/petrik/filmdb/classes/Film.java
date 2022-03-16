@@ -94,11 +94,11 @@ public class Film {
     }
     public String rendezokToString(){
         StringBuilder kimenet= new StringBuilder();
-        for (int i = 0; i < this.szineszek.size(); i++) {
-            if (i!=this.szineszek.size()-1){
-                kimenet.append(this.szineszek.get(i).getSzineszNev()).append(", ");
+        for (int i = 0; i < this.rendezok.size(); i++) {
+            if (i!=this.rendezok.size()-1){
+                kimenet.append(this.rendezok.get(i).getRendezoNev()).append(", ");
             }else{
-                kimenet.append(this.szineszek.get(i).getSzineszNev());
+                kimenet.append(this.rendezok.get(i).getRendezoNev());
             }
         }
         return kimenet.toString();

@@ -19,13 +19,13 @@
                        <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>
-                <TableView fx:id="filmTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="filmTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colFilmId" minWidth="50.0" prefWidth="250.0" text="ID" />
                         <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="250.0" text="Cím" />
                     </columns>
                 </TableView>
-                <TextArea fx:id="txtAdatok" editable="false" prefHeight="100.0" wrapText="true" />
+                <TextArea fx:id="txtAdatok" editable="false" prefHeight="300.0" wrapText="true" />
             </VBox>
         </content>
     </Tab>
@@ -90,6 +90,26 @@
                     <columns>
                         <TableColumn fx:id="colSzineszId" minWidth="50.0" prefWidth="250.0" text="ID" />
                         <TableColumn fx:id="colSzinesz" minWidth="50.0" prefWidth="250.0" text="Név" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </content>
+    </Tab>
+    <Tab closable="false" text="Felhasználók">
+        <content>
+            <VBox spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <children>
+                        <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFelhasznaloTorlesButtonClick" prefWidth="100.0" text="Törlés" />
+                    </children>
+                </HBox>
+                <TableView fx:id="felhasznaloTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colFelhasznaloId" minWidth="50.0" prefWidth="250.0" text="ID" />
+                        <TableColumn fx:id="colFelhasznaloEmail" minWidth="50.0" prefWidth="250.0" text="email" />
                     </columns>
                 </TableView>
             </VBox>

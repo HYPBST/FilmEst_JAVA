@@ -1,12 +1,13 @@
 package hu.petrik.filmdb.classes;
 
-import hu.petrik.filmdb.FilmApi;
-import hu.petrik.filmdb.pivot.FilmKategoriai;
-import hu.petrik.filmdb.pivot.FilmRendezoi;
-import hu.petrik.filmdb.pivot.FilmSzineszei;
+import javafx.scene.image.Image;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class Film {

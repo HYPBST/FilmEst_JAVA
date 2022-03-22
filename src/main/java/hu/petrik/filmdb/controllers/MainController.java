@@ -1,10 +1,7 @@
 package hu.petrik.filmdb.controllers;
 
 import hu.petrik.filmdb.*;
-import hu.petrik.filmdb.classes.Film;
-import hu.petrik.filmdb.classes.Kategoria;
-import hu.petrik.filmdb.classes.Rendezo;
-import hu.petrik.filmdb.classes.Szinesz;
+import hu.petrik.filmdb.classes.*;
 import hu.petrik.filmdb.pivot.FilmKategoriai;
 import hu.petrik.filmdb.pivot.FilmRendezoi;
 import hu.petrik.filmdb.pivot.FilmSzineszei;
@@ -14,13 +11,24 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javax.imageio.ImageIO;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainController extends Controller {
+    @FXML
+    public TableView<Felhasznalo> felhasznaloTable;
+    @FXML
+    public TableColumn<Felhasznalo,String> colFelhasznaloId;
+    @FXML
+    public TableColumn<Felhasznalo,String> colFelhasznaloEmail;
     @FXML
     private TableView<Film> filmTable;
     @FXML
@@ -35,15 +43,22 @@ public class MainController extends Controller {
     public TableColumn<Kategoria, String> colKategoriaId;
     @FXML
     public TableColumn<Kategoria, String> colKategoria;
+    @FXML
     public TableView<Rendezo> rendezoTable;
+    @FXML
     public TableColumn<Rendezo,String> colRendezoId;
+    @FXML
     public TableColumn<Rendezo,String> colRendezo;
+    @FXML
     public TableView<Szinesz> szineszTable;
+    @FXML
     public TableColumn<Szinesz,String> colSzineszId;
+    @FXML
     public TableColumn<Szinesz,String> colSzinesz;
 
 
     List<Film> filmList;
+    List<Felhasznalo> felhasznaloList;
     List<Kategoria> kategoriaList;
     List<Rendezo> rendezoList;
     List<Szinesz> szineszList;
@@ -55,6 +70,9 @@ public class MainController extends Controller {
     public void initialize(){
         colCim.setCellValueFactory(new PropertyValueFactory<>("cim"));
         colFilmId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colFelhasznaloEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colFelhasznaloId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colFilmId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colKategoriaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
         colRendezoId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -65,6 +83,7 @@ public class MainController extends Controller {
         kategoriaListaFeltolt();
         rendezoListaFeltolt();
         szineszListaFeltolt();
+        felhasznaloListaFeltolt();
         kapcsolatok();
     }
 
@@ -81,6 +100,16 @@ public class MainController extends Controller {
             film.setRendezok(new ArrayList<>());
             film.setSzineszek(new ArrayList<>());
             filmTable.getItems().add(film);
+        }
+    }private void felhasznaloListaFeltolt(){
+        try {
+            felhasznaloList = FilmApi.getFelhasznaloList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        felhasznaloTable.getItems().clear();
+        for(Felhasznalo felhasznalo: felhasznaloList){
+            felhasznaloTable.getItems().add(felhasznalo);
         }
     }
     private void kategoriaListaFeltolt(){
@@ -113,6 +142,7 @@ public class MainController extends Controller {
 
     public void onItemSelect(MouseEvent mouseEvent) {
         if(filmTable.getSelectionModel().getSelectedIndex()!=-1) {
+
             Film kivalasztott = filmTable.getSelectionModel().getSelectedItem();
             StringBuilder  sb=new StringBuilder();
             sb.append("Megjelenési év: ").append(kivalasztott.getMegjelenesiEv()).append("\n");
@@ -378,4 +408,22 @@ public class MainController extends Controller {
         }
     }
 
+    public void onFelhasznaloTorlesButtonClick(ActionEvent actionEvent) {
+        int selectedIndex = felhasznaloTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("A törléshez előbb válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Felhasznalo torlendoFelhasznalo = felhasznaloTable.getSelectionModel().getSelectedItem();
+        if (!confirm("Biztos hogy törölni szeretné az alábbi felhasználót: "+torlendoFelhasznalo.getEmail())){
+            return;
+        }
+        try {
+            boolean sikeres = FilmApi.felhasznaloTorles(torlendoFelhasznalo.getId());
+            alert(sikeres ? "Sikeres törlés": "Sikertele törlés");
+            felhasznaloListaFeltolt();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
 }

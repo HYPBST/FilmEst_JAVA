@@ -3,6 +3,7 @@ module hu.petrik.filmdb {
     requires javafx.fxml;
     requires java.sql;
     requires com.google.gson;
+    requires java.desktop;
 
     opens hu.petrik.filmdb to javafx.fxml, com.google.gson;
     exports hu.petrik.filmdb;

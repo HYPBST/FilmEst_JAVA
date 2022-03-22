@@ -2,10 +2,7 @@ package hu.petrik.filmdb;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hu.petrik.filmdb.classes.Film;
-import hu.petrik.filmdb.classes.Kategoria;
-import hu.petrik.filmdb.classes.Rendezo;
-import hu.petrik.filmdb.classes.Szinesz;
+import hu.petrik.filmdb.classes.*;
 import hu.petrik.filmdb.pivot.FilmKategoriai;
 import hu.petrik.filmdb.pivot.FilmRendezoi;
 import hu.petrik.filmdb.pivot.FilmSzineszei;
@@ -24,6 +21,7 @@ public class FilmApi {
     private static final String FILMKATEGORIA_API_URL = BASE_URL+"api/filmkategoria";
     private static final String FILMRENDEZO_API_URL = BASE_URL+"api/filmrendezo";
     private static final String FILMSZINESZ_API_URL = BASE_URL+"api/filmszinesz";
+    private static final String FELHASZNALO_API_URL = BASE_URL+"api/felhasznalok";
 
     public static List<Film> getFilmList() throws IOException {
         Response response = RequestHandler.get(FILM_API_URL);
@@ -34,6 +32,17 @@ public class FilmApi {
             throw new IOException(message);
         }
         Type type = new TypeToken<List<Film>>(){}.getType();
+        return jsonConvert.fromJson(json,type);
+    }
+    public static List<Felhasznalo> getFelhasznaloList() throws IOException {
+        Response response = RequestHandler.get(FELHASZNALO_API_URL);
+        String json = response.getContent();
+        Gson jsonConvert = new Gson();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        Type type = new TypeToken<List<Felhasznalo>>(){}.getType();
         return jsonConvert.fromJson(json,type);
     }
     public static List<Kategoria> getKategoriaList() throws IOException {
@@ -133,6 +142,17 @@ public class FilmApi {
 
     public static boolean filmTorlese(int id) throws IOException {
         Response response = RequestHandler.delete(FILM_API_URL + "/" + id);
+
+        Gson jsonConvert = new Gson();
+        String json = response.getContent();
+        if (response.getResponseCode() >= 400){
+            String message = jsonConvert.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return response.getResponseCode() == 204;
+    }
+    public static boolean felhasznaloTorles(int id) throws IOException {
+        Response response = RequestHandler.delete(FELHASZNALO_API_URL + "/" + id);
 
         Gson jsonConvert = new Gson();
         String json = response.getContent();

@@ -6,9 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-    <VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="hu.petrik.filmdb.controllers.KategoriaFelvetel"
-        prefHeight="400.0" prefWidth="600.0">
+        prefHeight="400.0" prefWidth="600.0" spacing="10">
         <Label text="Kategória név:"/>
         <TextField fx:id="felvetelKategoria" promptText="Kategória" />
 

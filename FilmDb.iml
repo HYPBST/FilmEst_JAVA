@@ -37,5 +37,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.openjfx:javafx-media:win:11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.openjfx:javafx-web:11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.openjfx:javafx-web:win:11" level="project" />
+    <orderEntry type="library" name="Maven: com.aquafx-project:aquafx:0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.guigarage:stylemanager:0.1b2" level="project" />
   </component>
 </module>

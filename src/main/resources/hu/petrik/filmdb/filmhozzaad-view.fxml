@@ -5,19 +5,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.filmdb.controllers.FilmFelvetel">
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.filmdb.controllers.FilmFelvetel" spacing="5">
     <Label text="Cím:"/>
-    <TextField fx:id="txtCim" promptText="Kategória" />
+    <TextField fx:id="txtCim" promptText="Cím" />
     <Label text="Leírás:"/>
-    <TextArea fx:id="txtLeiras" promptText="Kategória" />
+    <TextArea fx:id="txtLeiras" promptText="Leírás" />
     <Label text="Megjelenési év:"/>
-    <TextField fx:id="txtEv" promptText="Kategória" />
+    <TextField fx:id="txtEv" promptText="Megjelenési év" />
     <Label text="értékelés:"/>
-    <TextField fx:id="txtErtekeles" promptText="Kategória" />
+    <TextField fx:id="txtErtekeles" promptText="Értékelés" />
     <Label text="Img Url:"/>
-    <TextField fx:id="txtImgUrl" promptText="Kategória" />
+    <TextField fx:id="txtImgUrl" promptText="Img Url" />
     <MenuButton text="Kategóriák" fx:id="menuKategoria"/>
     <MenuButton text="Színészek" fx:id="menuSzineszek"/>
     <MenuButton text="Rendezők" fx:id="menuRendezok"/>
-    <Button text="Módosít" onAction="#onFelvetelButtonClick"/>
+    <Button text="Felvétel" onAction="#onFelvetelButtonClick"/>
 </VBox>

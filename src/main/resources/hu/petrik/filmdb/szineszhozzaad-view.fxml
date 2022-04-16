@@ -6,10 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <VBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="hu.petrik.filmdb.controllers.SzineszFelvetel"
-            prefHeight="400.0" prefWidth="600.0" >
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="hu.petrik.filmdb.controllers.SzineszFelvetel"
+      prefHeight="400.0" prefWidth="600.0" spacing="10">
     <Label text="Színész neve:"/>
     <TextField fx:id="felvetelSzinesz" promptText="Színész" GridPane.columnIndex="1"/>
 

@@ -12,7 +12,7 @@ public class FilmApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(FilmApp.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("FilmDb");
-        scene.getStylesheets().add("src/style.css");
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.show();
     }

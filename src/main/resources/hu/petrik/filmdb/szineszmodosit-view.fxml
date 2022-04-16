@@ -6,11 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-        <VBox xmlns="http://javafx.com/javafx"
-              xmlns:fx="http://javafx.com/fxml"
-              fx:controller="hu.petrik.filmdb.controllers.SzineszModosit"
-              prefHeight="400.0" prefWidth="600.0">
-    <Label text="Színész neve:"/>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="hu.petrik.filmdb.controllers.SzineszModosit"
+      prefHeight="400.0" prefWidth="600.0" spacing="10">
+            <Label text="Színész neve:"/>
             <TextField fx:id="modositSzinesz" promptText="Színész"/>
 
             <Button minWidth="100.0" mnemonicParsing="false" onAction="#onModositButtonClick" prefWidth="200.0"

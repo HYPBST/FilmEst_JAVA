@@ -65,6 +65,11 @@
             <version>11.6.15</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.aquafx-project</groupId>
+            <artifactId>aquafx</artifactId>
+            <version>0.2</version>
+        </dependency>
     </dependencies>
 
     <build>

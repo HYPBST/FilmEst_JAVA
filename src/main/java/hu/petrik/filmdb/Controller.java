@@ -19,7 +19,6 @@ public abstract class Controller {
         return stage;
     }
 
-    //hozzaad controllerből áthelyezve
     protected void alert(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setContentText(uzenet);
@@ -42,7 +41,6 @@ public abstract class Controller {
         return result.get() == ButtonType.OK;
     }
 
-    //main controllerből áthelyezve
     protected void hibaKiir(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Hiba");
@@ -62,6 +60,7 @@ public abstract class Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(FilmApp.class.getResource(fxml));
         Scene scene = new Scene(fxmlLoader.load(), width, height);
         stage.setTitle(title);
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         Controller controller = fxmlLoader.getController();
         controller.stage = stage;

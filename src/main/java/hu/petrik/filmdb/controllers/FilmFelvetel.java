@@ -139,7 +139,7 @@ public class FilmFelvetel extends Controller {
             return;
         }
         boolean valodiUrl=false;
-        if (imageUrl.substring(0, 4).equals("www.")||imageUrl.substring(0,8).equals("https://")){
+        if (imageUrl.length()<4||imageUrl.substring(0, 4).equals("www.")||imageUrl.substring(0,8).equals("https://")){
             valodiUrl=true;
         }
         if (!valodiUrl){
@@ -169,6 +169,7 @@ public class FilmFelvetel extends Controller {
 
         }
         ujFilm.setKategoriak(kategoriaList);
+
         for (MenuItem mi:menuRendezok.getItems()) {
             CheckBox cb = (CheckBox)mi.getUserData() ;
             Rendezo rendezo = (Rendezo)cb.getUserData();
@@ -177,20 +178,35 @@ public class FilmFelvetel extends Controller {
             }
 
         }
+
         ujFilm.setRendezok(rendezoList);
+
         for (MenuItem mi:menuSzineszek.getItems()) {
             CheckBox cb = (CheckBox)mi.getUserData() ;
             Szinesz szinesz = (Szinesz) cb.getUserData();
             if (cb.isSelected()){
                 szineszList.add(szinesz);
             }
-
         }
+        ujFilm.setSzineszek(szineszList);
+
         if (rendezoList.size()>1){
             alert("Csak egy rendezőt lehet beállítani.");
             return;
         }
-        ujFilm.setSzineszek(szineszList);
+        if(rendezoList.isEmpty()){
+            alert("Meg kell adni rendezőt.");
+            return;
+        }
+        if(kategoriaList.isEmpty()){
+            alert("Meg kell adni kategóriát/kategóriákat.");
+            return;
+        }
+        if(szineszList.isEmpty()){
+            alert("Meg kell adni színészeket.");
+            return;
+        }
+
         try {
 
             Film letrehozott = FilmApi.filmHozzaadasa(ujFilm);

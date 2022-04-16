@@ -19,10 +19,15 @@
                        <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFilmTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <TextField prefWidth="550.0" promptText="Film címe" fx:id="keresesFilm"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Keresés" onAction="#onFilmKeresesButtonClick"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Reset" onAction="#reset"/>
+                </HBox>
                 <TableView fx:id="filmTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colFilmId" minWidth="50.0" prefWidth="250.0" text="ID" />
-                        <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="250.0" text="Cím" />
+                        <TableColumn fx:id="colFilmId" minWidth="50.0" prefWidth="380.0" text="ID" />
+                        <TableColumn fx:id="colCim" minWidth="50.0" prefWidth="380.0" text="Cím" />
                     </columns>
                 </TableView>
                 <TextArea fx:id="txtAdatok" editable="false" prefHeight="300.0" wrapText="true" />
@@ -42,10 +47,15 @@
                       <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onKategoriaTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>
-                <TableView fx:id="kategoriaTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <TextField prefWidth="550.0" promptText="Keresendő szöveg" fx:id="keresesKategoria"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Keresés" onAction="#onKategoriaKeresesButtonClick"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Reset" onAction="#reset"/>
+                </HBox>
+                <TableView fx:id="kategoriaTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colKategoriaId" minWidth="50.0" prefWidth="250.0" text="ID" />
-                        <TableColumn fx:id="colKategoria" minWidth="50.0" prefWidth="250.0" text="Kategória" />
+                        <TableColumn fx:id="colKategoriaId" minWidth="50.0" prefWidth="380.0" text="ID" />
+                        <TableColumn fx:id="colKategoria" minWidth="50.0" prefWidth="380.0" text="Kategória" />
                     </columns>
                 </TableView>
             </VBox>
@@ -64,10 +74,15 @@
                       <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onRendezoTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>
-                <TableView fx:id="rendezoTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <TextField prefWidth="550.0" promptText="Keresendő szöveg" fx:id="keresesRendezo"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Keresés" onAction="#onRendezoKeresesButtonClick"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Reset" onAction="#reset"/>
+                </HBox>
+                <TableView fx:id="rendezoTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colRendezoId" minWidth="50.0" prefWidth="250.0" text="ID" />
-                        <TableColumn fx:id="colRendezo" minWidth="50.0" prefWidth="250.0" text="Név" />
+                        <TableColumn fx:id="colRendezoId" minWidth="50.0" prefWidth="380.0" text="ID" />
+                        <TableColumn fx:id="colRendezo" minWidth="50.0" prefWidth="380.0" text="Név" />
                     </columns>
                 </TableView>
             </VBox>
@@ -86,10 +101,15 @@
                       <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onSzineszTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                    </children>
                 </HBox>
-                <TableView fx:id="szineszTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <TextField prefWidth="550.0" promptText="Keresendő szöveg" fx:id="keresesSzinesz"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Keresés" onAction="#onSzineszKeresesButtonClick"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Reset" onAction="#reset"/>
+                </HBox>
+                <TableView fx:id="szineszTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colSzineszId" minWidth="50.0" prefWidth="250.0" text="ID" />
-                        <TableColumn fx:id="colSzinesz" minWidth="50.0" prefWidth="250.0" text="Név" />
+                        <TableColumn fx:id="colSzineszId" minWidth="50.0" prefWidth="380.0" text="ID" />
+                        <TableColumn fx:id="colSzinesz" minWidth="50.0" prefWidth="380.0" text="Név" />
                     </columns>
                 </TableView>
             </VBox>
@@ -106,10 +126,15 @@
                         <Button maxWidth="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#onFelhasznaloTorlesButtonClick" prefWidth="100.0" text="Törlés" />
                     </children>
                 </HBox>
-                <TableView fx:id="felhasznaloTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="500.0" VBox.vgrow="ALWAYS">
+                <HBox minHeight="30.0" prefHeight="30.0" spacing="10.0">
+                    <TextField prefWidth="550.0" promptText="Felhasználó email címe" fx:id="keresesFelhasznalo"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Keresés" onAction="#onFelhasznaloKeresesButtonClick"/>
+                    <Button maxWidth="100.0" minWidth="100.0" text="Reset" onAction="#reset"/>
+                </HBox>
+                <TableView fx:id="felhasznaloTable" minHeight="200.0" onMouseClicked="#onItemSelect" prefHeight="200.0" prefWidth="750.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colFelhasznaloId" minWidth="50.0" prefWidth="250.0" text="ID" />
-                        <TableColumn fx:id="colFelhasznaloEmail" minWidth="50.0" prefWidth="250.0" text="email" />
+                        <TableColumn fx:id="colFelhasznaloId" minWidth="50.0" prefWidth="380.0" text="ID" />
+                        <TableColumn fx:id="colFelhasznaloEmail" minWidth="50.0" prefWidth="380.0" text="email" />
                     </columns>
                 </TableView>
             </VBox>

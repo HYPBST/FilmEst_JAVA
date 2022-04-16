@@ -240,6 +240,22 @@ public class FilmModosit extends Controller {
 
         }
         modositando.setSzineszek(szineszListUj);
+        if (rendezoListUj.size()>1){
+            alert("Csak egy rendezőt lehet beállítani.");
+            return;
+        }
+        if(rendezoListUj.isEmpty()){
+            alert("Meg kell adni rendezőt.");
+            return;
+        }
+        if(kategoriaListUj.isEmpty()){
+            alert("Meg kell adni kategóriát/kategóriákat.");
+            return;
+        }
+        if(szineszListUj.isEmpty()){
+            alert("Meg kell adni színészeket.");
+            return;
+        }
         try {
             Film modositott = FilmApi.filmModositasa(modositando);
             if (modositott != null){
